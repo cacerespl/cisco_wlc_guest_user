@@ -17,7 +17,7 @@ username = sys.argv[1]
 password=sys.argv[2]
 email_server=sys.argv[3]
 wlc_ip = sys.argv[4]
-url = 'http://'+wlc_ip
+url = 'https://'+wlc_ip
 
 y = requests.get(url)
 cook = y.headers["set-cookie"]
@@ -32,11 +32,11 @@ user = ''.join(random.choice(chars) for i in range(8))
 userpwd = user
 
 #Connecting and authenticate to the WLC by using LobbyAdmin account and create wireless guest user
-requests.get(url+'/screens/frameset.html',verify = False, auth = (username, password),  headers = {"Referer":"http://wlc_ip/screens/frameset.html","Cookie":"cooki"}) 
-requests.get(url+'/screens/lobbyadmin_frameset.html', verify = False, auth = (username, password), headers = {"Referer":"http://wlc_ip/screens/frameset.html","Cookie":"cooki"})
-requests.get(url+'/screens/lobbyAdminBanner.html', verify = False, auth = (username, password),headers = {"Referer":"http://wlc_ip/screens/lobbyAdminBanner.html","Cookie":"cooki"})
+requests.get(url+'/screens/frameset.html',verify = False, auth = (username, password),  headers = {"Referer":"https://wlc_ip/screens/frameset.html","Cookie":"cooki"}) 
+requests.get(url+'/screens/lobbyadmin_frameset.html', verify = False, auth = (username, password), headers = {"Referer":"https://wlc_ip/screens/frameset.html","Cookie":"cooki"})
+requests.get(url+'/screens/lobbyAdminBanner.html', verify = False, auth = (username, password),headers = {"Referer":"https://wlc_ip/screens/lobbyAdminBanner.html","Cookie":"cooki"})
 payload ={"access_control":1,"username":user,"userpwd":userpwd,"lifetime_days":1,"lifetime_hours":0,"lifetime_mins":0,"lifetime_secs":0,"GuestWlanID":3,"description":"This is a user created by script","err_flag":"","err_msg":"","buttonClicked":4}
-requests.post(url+"/screens/aaa/guestuser_create.html", data = payload,  verify = False, auth = (username, password), headers = {"Referer":"http://wlc_ip/screens/aaa/guestuser_create.html","Cookie":"cooki"})
+requests.post(url+"/screens/aaa/guestuser_create.html", data = payload,  verify = False, auth = (username, password), headers = {"Referer":"https://wlc_ip/screens/aaa/guestuser_create.html","Cookie":"cooki"})
 
 #Send an email with the user's credentials
 
